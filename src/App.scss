@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+.fondo{
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-image: radial-gradient(circle at -7.92% 9.44%, #0095ff 0, #0091ff 5.56%, #008cff 11.11%, #0087ff 16.67%, #0081ff 22.22%, #427aff 27.78%, #7172fb 33.33%, #9169f1 38.89%, #aa5fe5 44.44%, #be55d8 50%, #cf4ac9 55.56%, #dc40ba 61.11%, #e735a9 66.67%, #ef2d98 72.22%, #f42787 77.78%, #f72676 83.33%, #f72b65 88.89%, #f53354 94.44%, #f13c44 100%);
+}
+
+.container{
+  padding: 40px 0;
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+  max-width: 650px;
+
+  &__text{
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+  }
+
+  &__input{
+    display: flex;
+    justify-content: center;
+
+    input{
+      padding: 5px 20px;
+      border-radius: 5px;
+      border: 1px solid rgb(193, 193, 193);
+      margin-right: 20px;
+      width: 500px;
+      background-color: rgba(0, 0, 0, 0.657);
+      color: white;
+      border: none;
+    }
+  }
+
+  &__tasks{
+    display: grid;
+    place-content: center;
+    margin: 20px 0;
+
+    &--task{
+      box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+      -moz-box-shadow: 1px 1px 85px -1px rgba(0,0,0,0.5);
+      width: 600px;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--input{
+      display: none;
+      height: 40px;
+      align-items: center;
+      margin: auto 0;
+
+      input{
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+    }
+
+    &--content{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p{
+        margin-bottom: 0;
+        font-size: 22px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.btnEdit, .btnDelete{
+  margin: 0 10px;
+  padding: 5px 20px;
+}
