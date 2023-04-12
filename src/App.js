@@ -1,21 +1,17 @@
-import logo from './logo.svg';
 import './App.scss';
 import { Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import TaskDetail from './components/TaskDetail';
 
 function App() {
   const [tasks, setTasks] = useState(["wake up early", "go to the store", "wash the car"]);
   const [newTask, setNewTask] = useState("");
-
-  const handleTask = (e)=>{
-    const data = e.target.value;
-    setNewTask(data);
-  }
+  const inputAddTask = useRef(null);
 
   const addNewTask = ()=>{
     setTasks([...tasks, newTask]);
     setNewTask("");
+    inputAddTask.current.value = "";
   }
 
   const deleteTask = (taskDelete)=>{
@@ -25,23 +21,23 @@ function App() {
 
   return (
     <div className='fondo'>
-      <div className='container'>
+      <section className='container'>
         <h1 className='container__text'>Tasks</h1>
         <h5 className='container__text'>Add, edit or delete your tasks.</h5>
 
         <div className='container__input'>
-          <input onChange={handleTask} type="text" placeholder='Add your tasks!'/>
-          <Button onClick={addNewTask} variant='dark'>Add task</Button>
+          <input ref={inputAddTask} onChange={(e) => setNewTask(e.target.value)} type="text" placeholder='Add your task!'/>
+          <Button className='btnTask' onClick={addNewTask} variant='dark'>Add task</Button>
         </div>
 
         <div className='container__tasks'>
           {tasks.map((item, idx)=>{
             return(
-              <TaskDetail tasks={item} key={idx} deleteTask={deleteTask}/>
+              <TaskDetail task={item} key={idx} deleteTask={deleteTask}/>
             )
           })}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

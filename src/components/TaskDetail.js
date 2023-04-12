@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
-const TaskDetail = ({tasks, deleteTask}) => {
+const TaskDetail = ({task, deleteTask}) => {
     const [newEditedTask, setNewEditedTask] = useState("");
     const [newDataOk, setNewDataOk] = useState(true);
     const inputNewTask = useRef(null);
     const inputContent = useRef(null);
 
-    const handleEditTask = (e)=>{
-        const data = e.target.value;
-        if(data != ""){
-            setNewEditedTask(data);
+    const handleEditTask = (value)=>{
+        if(value !== ""){
+            setNewEditedTask(value);
             setNewDataOk(false);
         }else{
             setNewDataOk(true);
@@ -28,24 +27,28 @@ const TaskDetail = ({tasks, deleteTask}) => {
         inputNewTask.current.style.display = "flex";
     } 
 
-    const handleDelete = ()=>{
-        deleteTask(tasks);
-    } 
-
   return (
     <div className='container__tasks--task'>
         <div className='container__tasks--content' ref={inputContent}>
-            {newDataOk ? <p><li>{tasks}</li></p> : <p><li>{newEditedTask}</li></p>}
+            {newDataOk ?
+                <p>
+                    <li>{task}</li>
+                </p> 
+                : 
+                <p>
+                    <li>{newEditedTask}</li>
+                </p>
+            }
             
             <div>
-                <Button onClick={editTask} className='btnEdit' variant='warning'>Edit</Button>
-                <Button onClick={handleDelete} className='btnDelete' variant='danger'>Delete</Button>
+                <Button onClick={editTask} className='btnTask' variant='warning'>Edit</Button>
+                <Button onClick={() => deleteTask(task)} className='btnTask' variant='danger'>Delete</Button>
             </div>
         </div>
 
-        <div className='container__tasks--input' ref={inputNewTask}>
-            <input type="text" onChange={handleEditTask} />
-            <Button onClick={addEditedTask} variant='dark'>Update</Button>
+        <div className='container__tasks--inputUpdate' ref={inputNewTask}>
+            <input type="text" onChange={(e) => handleEditTask(e.target.value)} />
+            <Button className='btnTask' onClick={addEditedTask} variant='dark'>Update</Button>
         </div>
     </div>
   )
